@@ -1,0 +1,57 @@
+<nb-layout>
+  <nb-layout-header>
+    <div class="w-full flex items-center justify-between">
+      <div class="flex items-center">
+        <nb-actions size="medium">
+          <nb-action (click)="toggle()" icon="menu-outline"></nb-action>
+        </nb-actions>
+        <div class="flex items-center">
+          <img src="assets/images/LogoFis.png" class="w-14" />
+          <div class="ml-2">
+            <p><b>Facultad</b></p>
+            <p>Ingenieria de Sistemas</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between">
+        <nb-actions size="small">
+          <nb-action
+            icon="bell-outline"
+            badgeDot
+            badgePosition="top right"
+            badgeStatus="warning"
+          >
+          </nb-action>
+          <nb-action
+            icon="info-outline"
+            badgeDot
+            badgePosition="top right"
+            badgeStatus="warning"
+          >
+          </nb-action>
+        </nb-actions>
+        <div>
+          <nb-user
+            name="Arana Caparachin ..."
+            title="Administrador"
+            picture="assets/images/Person.jpg"
+            [nbContextMenu]="items"
+            nbContextMenuTag="my-context-menu"
+          >
+          </nb-user>
+          <!-- <img src="assets/images/Person.jpg" class="w-12 rounded-full" />
+          <p>Prudencio Lliuyacc Jurgen Nikolai</p>-->
+        </div>
+      </div>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar tag="left" class="w-screen">
+
+        <nb-menu [items]="itemsMenu" class="bg-green-500">
+        </nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <ng-content></ng-content>
+  </nb-layout-column>
+</nb-layout>

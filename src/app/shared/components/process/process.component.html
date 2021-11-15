@@ -1,0 +1,101 @@
+<div class="flex space-x-4 my-2">
+  <div [class]="'w-full bg-'+color+'-300'">
+    <div [class]="'bg-'+color+'-500 p-2 text-blue-50 text-center'">{{title}}</div>
+    <div [class]="'bg-'+color+'-400 p-1 text-blue-50 text-center'">
+      {{
+        processMap.type == "root"
+          ? "Procesos"
+          : processMap.type == "process"
+          ? "Sub Procesos"
+          : ""
+      }}
+    </div>
+    <div class="relative flex space-x-4 p-4">
+      <div
+        class="bg-white cursor-pointer rounded-xl p-6 w-full text-center"
+        *ngFor="let item of processMap.children"
+        (click)="into(item)"
+      >
+        {{ item.title }}
+      </div>
+    </div>
+    <nb-card *ngIf="processMap.type == 'process'">
+      <nb-card-header class="flex items-center justify-between">
+        <span> Proceso: {{ processMap.title }} </span>
+        <button nbButton ghost type="button" (click)="back()">
+          <nb-icon icon="arrow-back-outline"></nb-icon>
+          Retroceder
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="overflow-x-scroll">
+          <nb-tabset>
+            <nb-tab tabTitle="Hoja de Procesos">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Eveniet architecto minus eos possimus commodi eligendi delectus,
+              quidem quas aliquam quasi harum natus consequatur illum
+              excepturi aspernatur doloremque obcaecati tempora totam.
+            </nb-tab>
+            <nb-tab tabTitle="Diagrama de Procesos">
+              <button nbButton  >Crear uno nuevo</button>
+              <div class="w-full h-screen">
+                <ngx-bpmn-modeler
+                [(ngModel)]="xmlModel"
+                  wrapperClass="h-screen  w-full"
+                  containerClass="h-screen  w-full"
+                  propertiesClass="h-screen  w-full"
+                >
+                </ngx-bpmn-modeler>
+              </div>
+            </nb-tab>
+
+            <nb-tab tabTitle="Documentos">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+
+            <nb-tab tabTitle="Carpetas">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+
+            <nb-tab tabTitle="P. Relacionados">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+            <nb-tab tabTitle="Indicadores">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+            <nb-tab tabTitle="Roles">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+            <nb-tab tabTitle="Puestos">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+            <nb-tab tabTitle="Relaciones">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              omnis saepe odio rerum sapiente distinctio labore ipsum amet
+              provident velit natus, non vitae! Voluptatem fugiat beatae
+              maxime iusto, nobis aut!
+            </nb-tab>
+          </nb-tabset>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<nb-layout>
+  <nb-layout-column class="flex items-center justify-center">
+    <nb-card class="sm:w-96 w-full">
+      <nb-card-body>
+        <form [formGroup]="loginFGroup">
+          <div class="flex items-center">
+            <h5 class="whitespace-nowrap mr-4">Iniciar Sesión</h5>
+            <hr class="h-1 bg-blue-600 w-full" />
+          </div>
+          <img class="w-24 mt-4" src="assets/images/LogoFis.png" />
+          <p class="my-4">
+            Ingrese su usuario y contraseña para poder iniciar sesión en el
+            sistema web.
+          </p>
+          <input
+            nbInput
+            fullWidth
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <br />
+          <br />
+          <nb-form-field>
+            <input
+              [type]="getInputType()"
+              nbInput
+              fullWidth
+              placeholder="Contraseña"
+              formControlName="password"
+            />
+            <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+              <nb-icon
+                [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                pack="eva"
+                [attr.aria-label]="
+                  showPassword ? 'hide password' : 'show password'
+                "
+              >
+              </nb-icon>
+            </button>
+          </nb-form-field>
+          <div  *ngIf="hasError" >
+            <p class="text-red-500 mt-2 text-center" style="color:red">
+              Credenciales Incorrectas
+            </p>
+          </div>
+          <button
+            nbButton
+            [disabled]="loginFGroup.invalid"
+            fullWidth
+            status="primary"
+            class="capitalize mt-4"
+            (click)="submit()"
+          >
+            Ingresar
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
