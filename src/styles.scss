@@ -3,8 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* BPMN */
-@import '~bpmn-js/dist/assets/diagram-js';
-@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
-@import '~bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css';
-@import '~diagram-js-minimap/assets/diagram-js-minimap';
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-icons/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+  @import '../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';

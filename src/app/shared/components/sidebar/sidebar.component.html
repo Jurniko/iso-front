@@ -46,12 +46,14 @@
     </div>
   </nb-layout-header>
   <nb-sidebar tag="left" class="w-screen">
-
-        <nb-menu [items]="itemsMenu" class="bg-green-500">
-        </nb-menu>
+    <nb-menu [items]="itemsMenu" class="bg-green-500"> </nb-menu>
   </nb-sidebar>
 
   <nb-layout-column>
-    <ng-content></ng-content>
+    <nb-layout>
+      <nb-layout-column >
+        <router-outlet></router-outlet>
+      </nb-layout-column>
+    </nb-layout>
   </nb-layout-column>
 </nb-layout>

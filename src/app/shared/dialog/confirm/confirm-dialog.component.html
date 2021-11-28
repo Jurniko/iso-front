@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>{{title}}</nb-card-header>
+  <nb-card-body [innerHtml]="description"></nb-card-body>
+  <nb-card-footer class="flex items-center justify-between">
+    <button nbButton ghost (click)="this._dialogRef.close(null)">
+      Cancelar
+    </button>
+    <button nbButton status="primary" (click)="this._dialogRef.close(true)">
+      Aceptar
+    </button>
+  </nb-card-footer>
+</nb-card>

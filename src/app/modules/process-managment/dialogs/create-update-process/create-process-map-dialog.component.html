@@ -1,0 +1,239 @@
+<nb-card>
+  <nb-card-header>Crear Mapa de Proceso</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="processMapFormGroup">
+      <nb-tabset>
+        <nb-tab tabTitle="Estrategico">
+          <label>
+            <b>Añadir Proceso </b><button nbButton ghost status="success" (click)="addProcess('strategic')">
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </label>
+          <div *ngFor="let process of strategic.children" class="my-2">
+            <section class="ml-4">
+              <label> Proceso Nuevo: </label>
+              <div class="flex justify-between">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <section class="ml-8">
+              <label>
+                Agregar Sub Procesos
+                <button nbButton ghost status="success" (click)="addSubProcess('strategic', process.tempId ?? '')">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+              </label>
+              <div class="flex justify-between" *ngFor="let subProcess of process.children">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setSubProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setSubProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setSubProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <br />
+          </div>
+
+        </nb-tab>
+        <nb-tab tabTitle="Misional">
+          <label>
+            <b>Añadir Proceso </b><button nbButton ghost status="success" (click)="addProcess('missionary')">
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </label>
+          <div *ngFor="let process of missionary.children" class="my-2">
+            <section class="ml-4">
+              <label> Proceso Nuevo: </label>
+              <div class="flex justify-between">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <section class="ml-8">
+              <label>
+                Agregar Sub Procesos
+                <button nbButton ghost status="success" (click)="addSubProcess('missionary', process.tempId ?? '')">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+              </label>
+              <div class="flex justify-between" *ngFor="let subProcess of process.children">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setSubProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setSubProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setSubProcessValue(
+                      'missionary',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <br />
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="Apoyo">
+          <label>
+            <b>Añadir Proceso </b><button nbButton ghost status="success" (click)="addProcess('support')">
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </label>
+          <div *ngFor="let process of support.children" class="my-2">
+            <section class="ml-4">
+              <label> Proceso Nuevo: </label>
+              <div class="flex justify-between">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setProcessValue(
+                      'support',
+                      process.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setProcessValue(
+                      'support',
+                      process.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setProcessValue(
+                      'support',
+                      process.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <section class="ml-8">
+              <label>
+                Agregar Sub Procesos
+                <button nbButton ghost status="success" (click)="addSubProcess('support', process.tempId ?? '')">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+              </label>
+              <div class="flex justify-between" *ngFor="let subProcess of process.children">
+                <input nbInput type="text" fullWidth placeholder="Código" (keyup)="
+                    setSubProcessValue(
+                      'strategic',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'code',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Nombre" (keyup)="
+                    setSubProcessValue(
+                      'support',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'title',
+                      $event.target
+                    )
+                  " />
+                <input nbInput type="text" fullWidth placeholder="Descripción" (keyup)="
+                    setSubProcessValue(
+                      'support',
+                      process.tempId ?? '',
+                      subProcess.tempId ?? '',
+                      'description',
+                      $event.target
+                    )
+                  " />
+              </div>
+            </section>
+            <br />
+          </div>
+        </nb-tab>
+      </nb-tabset>
+       <button nbButton status="primary"  (click)="save()">Crear</button>
+    </form>
+  </nb-card-body>
+</nb-card>

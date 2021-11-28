@@ -1,3 +1,48 @@
-<j-process title="Estratégicos"></j-process>
-<j-process color="green" title="Misionales"></j-process>
-<j-process color="yellow" title="Apoyo"></j-process>
+<table style="table-layout: fixed" width="100%">
+  <tr>
+    <td rowspan="3" align="center" class="w-12 bg-gray-700">
+      <div class="text-lg text-white" style="writing-mode: vertical-lr">
+        REQUISITOS CLIENTE NORMATIVOS INTERNOS
+      </div>
+    </td>
+    <td>
+      <j-process
+        title="Estratégicos"
+        [processMap]="strategic.data"
+        [subLvlLimit]="strategic?.component?.subLvlLimit??1"
+        [selectedById]="strategic?.component?.selectedProcessById??null
+        "
+        (onSelected)="processSelected($event,'strategic')"
+      ></j-process>
+    </td>
+    <td rowspan="3" align="center" class="w-12 bg-gray-700">
+      <div class="text-lg text-white" style="writing-mode: vertical-lr">
+        SATISFACCIÓN DEL CLIENTE Y CONFORMIDAD REQUISITOS
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <j-process
+        color="green"
+        title="Misionales"
+        [processMap]="missionary.data"
+        [subLvlLimit]="missionary?.component?.subLvlLimit??1"
+        [selectedById]="missionary?.component?.selectedProcessById ??null"
+        (onSelected)="processSelected($event,'missionary')"
+      ></j-process>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <j-process
+        color="yellow"
+        title="Apoyo"
+        [processMap]="support.data"
+        [subLvlLimit]="support?.component!.subLvlLimit??1"
+        [selectedById]="support?.component!.selectedProcessById ?? null"
+        (onSelected)="processSelected($event,'support')"
+      ></j-process>
+    </td>
+  </tr>
+</table>

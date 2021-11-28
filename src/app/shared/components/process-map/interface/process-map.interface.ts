@@ -1,11 +1,25 @@
-export interface ProcessMap{
-  title: string;
+import { Process } from "src/app/modules/process-managment/interfaces/process.interface";
 
-  description: string;
-
-  parent  ?: ProcessMap;
-
-  type: 'root'|'process'|'sub-process',
-
-  children ?: ProcessMap[]
+export interface ProcessMapOptions{
+  strategic:{
+    data: Process[],
+    component?: {
+      subLvlLimit?: number ,
+      selectedProcessById?: number
+    }
+  },
+  missionary:{
+    data: Process[],
+    component?: {
+      subLvlLimit?: number,
+      selectedProcessById?: number
+    }
+  },
+  support:{
+    data: Process[],
+    component?: {
+      subLvlLimit?: number,
+      selectedProcessById?: number
+    }
+  }
 }

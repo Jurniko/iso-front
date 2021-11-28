@@ -13,6 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
+    NebularModule,
   ],
 })
 export class DashboardModule { }

@@ -1,0 +1,26 @@
+<div class="w-full">
+  <nb-button-group (valueChange)="selectedFromButtonGroup($event)">
+    <button nbButtonToggle value="1" pressed="">Aplicaciones</button>
+  </nb-button-group>
+  <ng-container [ngSwitch]="indexValue">
+    <section
+      *ngSwitchCase="1"
+      class="w-11/12 p-8 bg-white rounded-md border-2 shadow-xl"
+    >
+      <div class="flex flex-wrap cursor justify-between">
+        <figure
+          class="bg-gray-200 rounded-md text-center p-4 m-2"
+          *ngFor="let app of apps"
+          (click)="this._router.navigate([app.redirectTo])"
+          [ngClass]="app.enabled ? 'cursor-pointer hover:bg-gray-300' : ''"
+          [nbTooltip]="app.enabled ? 'Activado' : 'Inactivo'"
+        >
+          <img [src]="'assets/icon/' + app.icon" class="w-14 m-auto" />
+          <figcaption>
+            <b>{{ app.title }}</b>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </ng-container>
+</div>

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProcessMap } from '../process-map/interface/process-map.interface';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Process } from 'src/app/modules/process-managment/interfaces/process.interface';
 
 @Component({
   selector: 'j-process',
@@ -8,94 +8,36 @@ import { ProcessMap } from '../process-map/interface/process-map.interface';
 export class ProcessComponent implements OnInit {
   @Input() color : string = 'blue'
   @Input() title !: string ;
-  xmlModel = 'assets/diagram.bpmn';
-  processMapTemp !: ProcessMap
-  processMap : ProcessMap = {
-    title: 'Estatégicos',
-    description: 'holis',
-    type: 'root',
-    children: [
-      {
-        title: 'Proceso 1',
-        description: 'lorem ipson',
-        type: 'process',
-        children: [
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 1.1',
-            description: 'lorem ipson 1.1',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 1.2',
-            description: 'lorem ipson 1.2',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 1.3',
-            description: 'lorem ipson 1.3',
-          },
-        ],
-      },
-      {
-        title: 'Proceso 2',
-        description: 'lorem ipson',
-        type: 'process',
-        children: [
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 2.1',
-            description: 'lorem ipson 2.1',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 2.2',
-            description: 'lorem ipson 2.2',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 2.3',
-            description: 'lorem ipson 2.3',
-          },
-        ],
-      },
-      {
-        title: 'Proceso 3',
-        description: 'lorem ipson',
-        type: 'process',
-        children: [
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 3.1',
-            description: 'lorem ipson 3.1',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 3.2',
-            description: 'lorem ipson 3.2',
-          },
-          {
-            type: 'sub-process',
-            title: 'Sub proceso 3.3',
-            description: 'lorem ipson 3.3',
-          },
-        ],
-      },
-    ],
-  };
+  @Input() subLvlLimit !: number;
+  @Input() selectedById !: number | null;
+  @Input() processMap !: Process[];
+  @Output() onSelected = new EventEmitter<Process>()
+  @Input() currentLvlIndex = 1 ;
+  processMapTemp !: Process[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.processMapTemp = this.processMap
+    this.subLvlLimit = this.subLvlLimit ?? 1
+    this.processMapTemp = this.processMap;
+    if(this.selectedById){
+      this.selectedProcess();
+    }
   }
 
-  into(item: ProcessMap) {
-    if (item.children) {
-      this.processMap = item;
+  selectedProcess(){
+   let a = this.processMap?.filter(e=>e.id == this.selectedById);
+   if(a) this.processMap = a;
+  }
+
+  into(item: Process) {
+    if (item.children && this.currentLvlIndex > this.subLvlLimit ) {
+      this.currentLvlIndex ++;
+      this.processMap = item.children;
     }
   }
   back(){
+    this.currentLvlIndex --;
     this.processMap = this.processMapTemp
   }
 }

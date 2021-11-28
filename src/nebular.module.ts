@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbAccordionModule, NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, NbIconModule,NbInputModule,NbLayoutModule,NbMenuModule,NbMenuService,NbSelectModule,NbSidebarModule,NbSidebarService,NbTabsetModule,NbTreeGridModule, NbUserModule, NbWindowModule } from '@nebular/theme';
+import { NbAccordionModule, NbActionsModule, NbButtonGroupModule, NbButtonModule, NbCalendarModule, NbCardModule, NbContextMenuModule, NbDialogModule, NbDialogService, NbFormFieldModule, NbIconModule,NbInputModule,NbLayoutModule,NbMenuModule,NbMenuService,NbSelectModule,NbSidebarModule,NbSidebarService,NbTabsetModule,NbTagModule,NbTooltipModule,NbTreeGridModule, NbUserModule, NbWindowModule, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { NbMenuInternalService } from '@nebular/theme/components/menu/menu.service';
 
 
@@ -24,11 +24,19 @@ import { NbMenuInternalService } from '@nebular/theme/components/menu/menu.servi
     NbUserModule,
     NbMenuModule,
     NbTabsetModule,
-    NbWindowModule
+    NbWindowModule,
+    NbButtonGroupModule,
+    NbTooltipModule,
+    NbCalendarModule,
+    NbDialogModule,
+    NbTagModule,
+    
   ],
   providers: [
     NbSidebarService,
     NbMenuService,
+    NbDialogService,
+    NbWindowService
   ],
 })
 export class NebularModule { }

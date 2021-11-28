@@ -1,0 +1,17 @@
+<h6>Mapa de procesos</h6>
+<div *ngIf="!hasProcessMap">
+  Usted no cuenta con un mapa de procesos.
+  <button
+    nbButton
+    appearance="ghost"
+    status="primary"
+    (click)="openCreateProcessMapDialog()"
+  >
+    Crear Mapa de Proceso
+  </button>
+</div>
+<j-process-map
+  *ngIf="hasProcessMap"
+  [options]="myProcessMapOptions"
+  (onSelected)="processSelected($event)"
+></j-process-map>

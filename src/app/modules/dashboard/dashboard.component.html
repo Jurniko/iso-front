@@ -1,13 +1,12 @@
-<style>
-  .hola{
-    background-color: antiquewhite;
-  }
-</style>
-<j-sidebar>
-  <h5>Bienvenido, Max Maglioni Arana Caparachin </h5>
-  <p>Facultad de Ingenieria de Sistemas</p>
-  <hr />
-  <br />
-  <h6>Mapa de procesos</h6>
-  <j-process-map></j-process-map>
-</j-sidebar>
+<div class="flex flex-wrap justify-between">
+  <div class="w-9/12">
+    <h5>Bienvenido, Max Maglioni Arana Caparachin</h5>
+    <p>Facultad de Ingenieria de Sistemas</p>
+    <hr />
+    <br />
+    <j-app-modules></j-app-modules>
+  </div>
+  <div class="w-3/12 text-center">
+    <nb-calendar [(date)]="date" size="medium" class="m-auto"> </nb-calendar>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="mb-12" [ngClass]="iHeight=='xl'?'h-96':iHeight=='lg'?'h-72':iHeight=='md'?'h-52':iHeight=='sm'?'h-32':'h-16'">
+  <ejs-richtexteditor
+    [height]="height"
+    [enabled]="!disabled"
+    [id]="id"
+    #apiRTE
+    [toolbarSettings]="tools"
+    (valueChange)="contentHtmlChange($event); onChange($event)"
+    [(value)]="value"
+  >
+    <ng-template #valueTemplate>
+      <span> </span>
+    </ng-template>
+  </ejs-richtexteditor>
+</div>

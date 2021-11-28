@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   submit(){
     this.loginService.signIn(this.loginFGroup.value).subscribe((e:any)=>{
-      console.log(e)
       this._router.navigate(['/dashboard'])
       localStorage.setItem('access_token',e.access_token)
     },(httpException)=>{

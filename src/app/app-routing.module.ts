@@ -19,6 +19,7 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  { path: 'process-managment', loadChildren: () => import('./modules/process-managment/process-managment.module').then(m => m.ProcessManagmentModule) },
   {path: '**', redirectTo: '/login'}
 ];
 

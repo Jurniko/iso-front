@@ -1,0 +1,174 @@
+<nb-card class="w-11/12 m-auto">
+  <nb-card-body>
+    <table style="table-layout: fixed" width="100%">
+      <tr align="top">
+        <td class="bg-white w-52">
+          <div class="fixed top-0">
+            <button type="button" nbButton appearance="ghost" color="primary" class="flex items-center my-8"
+              (click)="this._dialogRef.close(true)">
+              <nb-icon icon="arrow-back-outline"></nb-icon>
+              Retroceder
+            </button>
+            <p>
+              <b>Proceso
+                {{
+                process.type == "strategic"
+                ? "Estrategico"
+                : process.type == "missionary"
+                ? "Misional"
+                : "Soporte"
+                }}:</b>
+            </p>
+            <nb-menu [items]="items" tag="menu"> </nb-menu>
+          </div>
+        </td>
+        <td [ngSwitch]="itemSelected.target" class="w-full">
+          <div class="flex flex-wrap justify-between items-center w-11/12">
+            <h6>{{ itemSelected.title }}</h6>
+            <button nbButton ghost status="primary" (click)="changeModeEdit(true)">
+              Editar
+            </button>
+          </div>
+
+          <hr class="h-1 border-none bg-gray-200 mt-4" />
+          <section [formGroup]="sheetFormGroup" (ngSubmit)="onSubmit()" class="h-screen bg-white p-4"
+            *ngSwitchCase="'#1'">
+            <div class="flex flex-wrap items-center justify-between" *ngIf="this.modeEdit">
+              <button nbButton status="danger" ghost class="m-left" (click)="changeModeEdit(false)">
+                Cancelar
+              </button>
+              <button nbButton status="primary" class="m-left" (click)="onSubmit()">
+                Registrar
+              </button>
+            </div>
+            <label jLabel>
+              Código:<br />
+              <input nbInput fullWidth type="text" formControlName="code" />
+            </label>
+            <label jLabel>
+              Nombre del Proceso:<br />
+              <input nbInput fullWidth type="text" formControlName="name" />
+            </label>
+            <!--<label class="">
+              Propietario del Proceso:<br>
+              <input nbInput fullWidth type="text" />
+            </label>
+            <label class="">
+              Fecha:<br>
+              <input nbInput fullWidth type="text" formControlName="code"/>
+            </label>-->
+            <label jLabel>
+              Misión u Objeto del Proceso<br />
+              <ejs-richtexteditor formControlName="objective" #apiRTE>
+              </ejs-richtexteditor>
+            </label>
+            <label jLabel>
+              Alcance de Proceso<br />
+              <ejs-richtexteditor formControlName="scope" #apiRTE>
+              </ejs-richtexteditor>
+            </label>
+            <label jLabel>
+              Entradas/Salidas<br />
+              <ejs-richtexteditor formControlName="io" #apiRTE>
+              </ejs-richtexteditor>
+            </label>
+            <label jLabel>
+              Partes Interesadas del Proceso<br />
+              <ejs-richtexteditor formControlName="stakeholder" #apiRTE>
+              </ejs-richtexteditor>
+            </label>
+            <div class="h-36"></div>
+          </section>
+          <!-------------------------Mapa------------------------>
+          <section class="h-screen bg-white p-4" *ngSwitchCase="'#2'">
+            <j-process [currentLvlIndex]="2" [processMap]="process.data?.children ?? []"></j-process>
+            <br />
+          </section>
+          <!--------------------Diagrama de flujo------------------------>
+          <section class="h-screen bg-white p-4" *ngSwitchCase="'#3'">
+            <j-bpmn [xml]="process.data?.flowdiagram??null" (saveXML)="onSubmit($event)"></j-bpmn>
+          </section>
+          <!-----------------------Documentos------------------------>
+          <section class="h-screen bg-white p-4"  *ngSwitchCase="'#4'">
+            <button nbButton (click)="documentIsActivateForm = !documentIsActivateForm" status="success"  class="my-4">Nuevo</button>
+            <nb-card [formGroup]="documentFormGroup" *ngIf="documentIsActivateForm">
+              <nb-card-header>{{documentIsEditMode? 'Editar':'Agregar'}}</nb-card-header>
+              <nb-card-body class="flex flex-wrap justify-between items-center space-x-2">
+                <label jLabel>
+                  Titulo
+                  <input type="text" nbInput fullWidth formControlName="title" />
+                </label>
+                <label jLabel>
+                  Url
+                  <input type="url" nbInput fullWidth formControlName="url" />
+                </label>
+              </nb-card-body>
+              <nb-card-footer>
+                <button nbButton ghost status="warning"
+                    (click)="documentFormGroup.reset();documentIsEditMode = false;">
+                    reset
+                  </button>
+                  <button nbButton ghost status="primary" (click)="onSubmit()">
+                    Guardar
+                  </button>
+
+              </nb-card-footer>
+            </nb-card>
+            <ngx-datatable class="material striped expandable" [columns]="generalColumnsTable" [rows]="generalRowsTable"
+              [headerHeight]="50" [columnMode]="'force'" [limit]="15" [rowHeight]="50" [footerHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+              <ngx-datatable-column *ngFor="let col of generalColumnsTable" [name]="col.name" [prop]="col.prop">
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Action">
+                <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                  <button nbButton ghost status="primary" nbTooltip="Editar" (click)="documentEdit(row)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+                  <button nbButton ghost status="danger" nbTooltip="Eliminar" (click)="documentDelete(row)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </section>
+          <!-----------------------Indicador------------------------>
+           <section class="h-screen bg-white p-4" *ngSwitchCase="'#5'">
+            <button nbButton (click)="indicatorIsActivateForm = !indicatorIsActivateForm" status="success" class="my-4">Nuevo</button>
+            <nb-card [formGroup]="indicatorFormGroup" *ngIf="indicatorIsActivateForm">
+              <nb-card-header>{{indicatorIsEditMode? 'Editar':'Agregar'}}</nb-card-header>
+              <nb-card-body class="flex flex-wrap justify-between items-center space-x-2">
+                <label jLabel>
+                  Codigo
+                  <input type="text" nbInput fullWidth formControlName="code" />
+                </label>
+                <label jLabel>
+                  Nombre
+                  <input type="url" nbInput fullWidth formControlName="name" />
+                </label>
+              </nb-card-body>
+              <nb-card-footer>
+                <button nbButton ghost status="warning"
+                    (click)="indicatorFormGroup.reset();indicatorIsEditMode = false;">
+                    reset
+                  </button>
+                  <button nbButton ghost status="primary" (click)="onSubmit()">
+                    Guardar
+                  </button>
+
+              </nb-card-footer>
+            </nb-card>
+            <ngx-datatable #table class="material striped expandable" [columns]="generalColumnsTable" [rows]="generalRowsTable"
+              [headerHeight]="50" [columnMode]="'force'" [limit]="15" [rowHeight]="50" [footerHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+              <ngx-datatable-column *ngFor="let col of generalColumnsTable" [name]="col.name" [prop]="col.prop">
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Action">
+                <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                  <button nbButton ghost status="primary" nbTooltip="Editar" (click)="indicatorEdit(row)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+                  <button nbButton ghost status="danger" nbTooltip="Eliminar" (click)="indicatorDelete(row)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                </ng-template>
+              </ngx-datatable-column>
+
+            </ngx-datatable>
+          </section>
+        </td>
+      </tr>
+    </table>
+  </nb-card-body>
+</nb-card>
