@@ -6,7 +6,6 @@ import { ProcessMapComponent } from './components/process-map/process-map.compon
 import { FormsModule } from '@angular/forms';
 import { ProcessComponent } from './components/process/process.component';
 import { BpmnComponent } from './components/bpmn/bpmn.component';
-import { HttpClientModule } from '@angular/common/http';
 import { AppModulesComponent } from './components/app-modules/app-modules.component';
 import { RouterModule } from '@angular/router';
 import {
@@ -32,7 +31,6 @@ import { ConfirmDialogComponent } from './dialog/confirm/confirm-dialog.componen
     NebularModule,
     CommonModule,
     FormsModule,
-    HttpClientModule,
     RouterModule,
     RichTextEditorModule,
     RichTextEditorAllModule,

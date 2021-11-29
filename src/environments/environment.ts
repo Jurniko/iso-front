@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  hostApi:'http://localhost:4000/api/'
+  host: 'api.iso21000.gmrubi.com',
+  hostApi:'https://api.iso21000.gmrubi.com/api/'
 };
 
 /*

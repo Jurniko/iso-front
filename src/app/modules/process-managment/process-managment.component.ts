@@ -23,8 +23,9 @@ export class ProcessManagmentComponent implements OnInit {
 
   getProcessMap(){
      this.processManagmentService.getProcess().subscribe((e:any)=>{
-      if(e.length == 0 ) this.hasProcessMap = false
-      else this.hasProcessMap = true;
+
+      if(e.strategic.length <= 0 || e.missionary.length <= 0 || e.support.length <= 0) this.hasProcessMap = false
+      else{this.hasProcessMap = true;
       this.myProcessMapOptions = {
         strategic:{
           data:e.strategic
@@ -36,6 +37,7 @@ export class ProcessManagmentComponent implements OnInit {
           data:e.support
         }
       }
+    }
     })
   }
 
@@ -46,6 +48,6 @@ export class ProcessManagmentComponent implements OnInit {
   }
 
   openCreateProcessMapDialog() {
-    this._dialogService.open(CreateProcessMapDialogComponent,{dialogClass:'w-96'}).onClose.subscribe(e=>this.getProcessMap());
+    this._dialogService.open(CreateProcessMapDialogComponent).onClose.subscribe(e=>this.getProcessMap());
   }
 }

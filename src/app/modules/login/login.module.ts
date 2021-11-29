@@ -17,7 +17,6 @@ import { LoginService } from './services/login.service';
     CommonModule,
     LoginRoutingModule,
     NebularModule,
-    HttpClientModule,
     ReactiveFormsModule,
     FormsModule
   ],

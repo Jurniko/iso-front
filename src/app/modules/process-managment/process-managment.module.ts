@@ -9,6 +9,7 @@ import { NebularModule } from 'src/nebular.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateProcessMapDialogComponent } from './dialogs/create-update-process/create-process-map-dialog.component';
 import { ProcessManagmentService } from './services/process-managment.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ProcessManagmentService } from './services/process-managment.service';
     SharedModule,
     NebularModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers:[ProcessManagmentService]
 })
